@@ -1,6 +1,6 @@
 <nav class="breadcrumbs" aria-label="{{t 'breadcrumb'}}">
   <ol>
-    <li><a href="{{help_center.url}}">{{help_center.name}}</a></li>
+    <li><a href="{{help_center.url}}">{{t 'home'}}</a></li>
     <li><a href="{{article.section.category.url}}">{{article.section.category.name}}</a></li>
     <li><a href="{{article.section.url}}">{{article.section.name}}</a></li>
     <li aria-current="page">{{article.title}}</li>
@@ -8,53 +8,68 @@
 </nav>
 
 <div class="container article-container">
-  <article class="article">
-    <header class="article-header">
-      <h1>{{article.title}}</h1>
-      <div class="article-meta">
-        <span class="article-author">{{article.author.name}}</span>
-        <time datetime="{{article.edited_at}}" class="article-date">{{date article.edited_at}}</time>
+  <div class="article-layout">
+    <article class="article">
+      <header class="article-header">
+        <h1>{{article.title}}</h1>
+        <div class="article-meta">
+          <span class="article-author">{{article.author.name}}</span>
+          <time datetime="{{article.edited_at}}" class="article-date">{{date article.edited_at}}</time>
+          {{#if article.label_names}}
+          <div class="article-labels">
+            {{#each article.label_names}}
+              <span class="label">{{this}}</span>
+            {{/each}}
+          </div>
+          {{/if}}
+        </div>
+      </header>
+
+      <div class="article-body">
+        {{article.body}}
       </div>
-    </header>
 
-    <div class="article-body">
-      {{article.body}}
-    </div>
+      {{#if article.attachments}}
+      <section class="article-attachments">
+        <h2>{{t 'attachments'}}</h2>
+        <ul>
+          {{#each article.attachments}}
+          <li>
+            <a href="{{url}}" target="_blank" rel="noopener">{{name}} ({{size}})</a>
+          </li>
+          {{/each}}
+        </ul>
+      </section>
+      {{/if}}
 
-    {{#if article.attachments}}
-    <section class="article-attachments">
-      <h2>{{t 'attachments'}}</h2>
-      <ul>
-        {{#each article.attachments}}
-        <li>
-          <a href="{{url}}" target="_blank">{{name}} ({{size}})</a>
-        </li>
-        {{/each}}
-      </ul>
-    </section>
-    {{/if}}
+      <footer class="article-footer">
+        <div class="article-vote" data-article-id="{{article.id}}">
+          <span class="article-vote-question">{{t 'was_this_helpful'}}</span>
+          <button class="article-vote-up" aria-label="{{t 'yes'}}">{{t 'yes'}}</button>
+          <button class="article-vote-down" aria-label="{{t 'no'}}">{{t 'no'}}</button>
+        </div>
+      </footer>
+    </article>
 
-    <footer class="article-footer">
-      <div class="article-vote" data-article-id="{{article.id}}">
-        <span class="article-vote-question">{{t 'was_this_helpful'}}</span>
-        <button class="article-vote-up" aria-label="{{t 'yes'}}">{{t 'yes'}}</button>
-        <button class="article-vote-down" aria-label="{{t 'no'}}">{{t 'no'}}</button>
+    <aside class="article-sidebar">
+      {{#if related_articles}}
+      <div class="sidebar-section">
+        <h3>{{t 'related_articles'}}</h3>
+        <ul>
+          {{#each related_articles}}
+          <li><a href="{{url}}">{{title}}</a></li>
+          {{/each}}
+        </ul>
       </div>
-    </footer>
-  </article>
+      {{/if}}
 
-  {{#if article.internal_notes_enabled}}
-  <section class="article-sidebar">
-    <h3>{{t 'related_articles'}}</h3>
-    {{#if related_articles}}
-    <ul>
-      {{#each related_articles}}
-      <li><a href="{{url}}">{{title}}</a></li>
-      {{/each}}
-    </ul>
-    {{/if}}
-  </section>
-  {{/if}}
+      <div class="sidebar-section">
+        <h3>{{t 'need_help'}}</h3>
+        <p>{{t 'need_help_desc'}}</p>
+        <a href="{{help_center.url}}/requests/new" class="btn btn-primary btn-small">{{t 'submit_request'}}</a>
+      </div>
+    </aside>
+  </div>
 
   {{#if article.comments_disabled}}{{else}}
   <section class="article-comments" id="comments">

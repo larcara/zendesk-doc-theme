@@ -1,6 +1,6 @@
 {
-  "name": "zendesk-doc-theme",
-  "author": "larcara",
+  "name": "carbonio-partner-portal",
+  "author": "Zextras",
   "version": "1.0.0",
   "api_version": 4,
   "default_locale": "en-us",
@@ -13,7 +13,14 @@
           "type": "color",
           "description": "brand_color_description",
           "label": "brand_color_label",
-          "value": "#17494D"
+          "value": "#2b73d2"
+        },
+        {
+          "identifier": "brand_color_dark",
+          "type": "color",
+          "description": "brand_color_dark_description",
+          "label": "brand_color_dark_label",
+          "value": "#1e5092"
         },
         {
           "identifier": "brand_text_color",
@@ -27,21 +34,42 @@
           "type": "color",
           "description": "background_color_description",
           "label": "background_color_label",
-          "value": "#F8F9F9"
+          "value": "#f5f6f8"
         },
         {
           "identifier": "text_color",
           "type": "color",
           "description": "text_color_description",
           "label": "text_color_label",
-          "value": "#2F3941"
+          "value": "#333333"
         },
         {
           "identifier": "link_color",
           "type": "color",
           "description": "link_color_description",
           "label": "link_color_label",
-          "value": "#1F73B7"
+          "value": "#2b73d2"
+        },
+        {
+          "identifier": "success_color",
+          "type": "color",
+          "description": "success_color_description",
+          "label": "success_color_label",
+          "value": "#8bc34a"
+        },
+        {
+          "identifier": "warning_color",
+          "type": "color",
+          "description": "warning_color_description",
+          "label": "warning_color_label",
+          "value": "#ffc107"
+        },
+        {
+          "identifier": "error_color",
+          "type": "color",
+          "description": "error_color_description",
+          "label": "error_color_label",
+          "value": "#d74942"
         }
       ]
     },
@@ -53,14 +81,14 @@
           "type": "text",
           "description": "heading_font_description",
           "label": "heading_font_label",
-          "value": "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+          "value": "'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
         },
         {
           "identifier": "text_font",
           "type": "text",
           "description": "text_font_description",
           "label": "text_font_label",
-          "value": "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+          "value": "'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
         }
       ]
     },
@@ -88,7 +116,7 @@
       ]
     },
     {
-      "label": "homepage_group_label",
+      "label": "partner_portal_group_label",
       "variables": [
         {
           "identifier": "show_hero",
@@ -96,6 +124,20 @@
           "description": "show_hero_description",
           "label": "show_hero_label",
           "value": true
+        },
+        {
+          "identifier": "show_partner_badge",
+          "type": "checkbox",
+          "description": "show_partner_badge_description",
+          "label": "show_partner_badge_label",
+          "value": true
+        },
+        {
+          "identifier": "partner_support_email",
+          "type": "text",
+          "description": "partner_support_email_description",
+          "label": "partner_support_email_label",
+          "value": "partner-support@zextras.com"
         }
       ]
     }

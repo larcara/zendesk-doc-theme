@@ -1,8 +1,8 @@
 /**
- * Zendesk Doc Theme - Main JavaScript
+ * Carbonio Partner Portal - Main JavaScript
  */
 document.addEventListener("DOMContentLoaded", function () {
-  // Instant search toggle
+  // Search input focus/blur
   var searchForms = document.querySelectorAll('[data-instant="true"]');
   searchForms.forEach(function (form) {
     var input = form.querySelector("input[type='search']");
@@ -50,7 +50,9 @@ document.addEventListener("DOMContentLoaded", function () {
           );
           if (container) {
             container.innerHTML =
-              '<span class="article-vote-thanks">Thanks for your feedback!</span>';
+              '<span class="article-vote-thanks">' +
+              container.getAttribute("data-thanks-text") +
+              "</span>";
           }
         }
       })
@@ -58,4 +60,23 @@ document.addEventListener("DOMContentLoaded", function () {
         // Silently handle vote errors
       });
   }
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+    anchor.addEventListener("click", function (e) {
+      var target = document.querySelector(this.getAttribute("href"));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+  });
+
+  // Active nav highlighting
+  var currentPath = window.location.pathname;
+  document.querySelectorAll(".header-nav a").forEach(function (link) {
+    if (link.getAttribute("href") === currentPath) {
+      link.classList.add("active");
+    }
+  });
 });

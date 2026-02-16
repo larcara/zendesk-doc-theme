@@ -2,7 +2,11 @@
   {{#if show_hero}}
   <div class="hero" {{#if homepage_hero}}style="background-image: url('{{homepage_hero}}')"{{/if}}>
     <div class="container">
-      <h1 class="hero-title">{{t 'home_page_title' help_center_name=help_center.name}}</h1>
+      {{#if show_partner_badge}}
+        <span class="partner-badge">{{t 'partner_portal'}}</span>
+      {{/if}}
+      <h1 class="hero-title">{{t 'home_page_title'}}</h1>
+      <p class="hero-subtitle">{{t 'home_page_subtitle'}}</p>
       <form role="search" class="search" action="{{search.url}}" data-instant="true">
         <input type="search" name="query" id="query" class="search-input" placeholder="{{t 'search_placeholder'}}" autocomplete="off" aria-label="{{t 'search'}}">
         <button type="submit" class="search-btn" aria-label="{{t 'search'}}">
@@ -14,23 +18,110 @@
   {{/if}}
 
   <div class="container">
-    <section class="categories">
-      {{#each categories}}
-      <a href="{{url}}" class="category-card">
-        <h2 class="category-title">{{name}}</h2>
-        {{#if description}}
-          <p class="category-description">{{description}}</p>
-        {{/if}}
-      </a>
-      {{/each}}
+    <!-- Portal sections grid -->
+    <section class="portal-sections">
+      <div class="portal-card portal-card--docs">
+        <div class="portal-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><line x1="8" y1="7" x2="16" y2="7"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        </div>
+        <h2 class="portal-card-title">{{t 'section_documentation'}}</h2>
+        <p class="portal-card-desc">{{t 'section_documentation_desc'}}</p>
+        <ul class="portal-card-links">
+          <li><a href="#">{{t 'link_admin_guide'}}</a></li>
+          <li><a href="#">{{t 'link_user_guide'}}</a></li>
+          <li><a href="#">{{t 'link_installation'}}</a></li>
+        </ul>
+      </div>
+
+      <div class="portal-card portal-card--troubleshooting">
+        <div class="portal-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <h2 class="portal-card-title">{{t 'section_troubleshooting'}}</h2>
+        <p class="portal-card-desc">{{t 'section_troubleshooting_desc'}}</p>
+        <ul class="portal-card-links">
+          <li><a href="#">{{t 'link_common_issues'}}</a></li>
+          <li><a href="#">{{t 'link_diagnostics'}}</a></li>
+          <li><a href="#">{{t 'link_advanced_config'}}</a></li>
+        </ul>
+      </div>
+
+      <div class="portal-card portal-card--faq">
+        <div class="portal-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="13" x2="13" y2="13"/></svg>
+        </div>
+        <h2 class="portal-card-title">{{t 'section_faq'}}</h2>
+        <p class="portal-card-desc">{{t 'section_faq_desc'}}</p>
+        <ul class="portal-card-links">
+          <li><a href="#">{{t 'link_faq'}}</a></li>
+          <li><a href="#">{{t 'link_known_issues'}}</a></li>
+          <li><a href="#">{{t 'link_workarounds'}}</a></li>
+        </ul>
+      </div>
+
+      <div class="portal-card portal-card--news">
+        <div class="portal-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        </div>
+        <h2 class="portal-card-title">{{t 'section_news'}}</h2>
+        <p class="portal-card-desc">{{t 'section_news_desc'}}</p>
+        <ul class="portal-card-links">
+          <li><a href="#">{{t 'link_changelogs'}}</a></li>
+          <li><a href="#">{{t 'link_release_notes'}}</a></li>
+          <li><a href="#">{{t 'link_feedback'}}</a></li>
+        </ul>
+      </div>
+
+      <div class="portal-card portal-card--marketing">
+        <div class="portal-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <h2 class="portal-card-title">{{t 'section_marketing'}}</h2>
+        <p class="portal-card-desc">{{t 'section_marketing_desc'}}</p>
+        <ul class="portal-card-links">
+          <li><a href="#">{{t 'link_brochures'}}</a></li>
+          <li><a href="#">{{t 'link_presentations'}}</a></li>
+          <li><a href="#">{{t 'link_brand_assets'}}</a></li>
+        </ul>
+      </div>
+
+      <div class="portal-card portal-card--sales">
+        <div class="portal-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <h2 class="portal-card-title">{{t 'section_sales'}}</h2>
+        <p class="portal-card-desc">{{t 'section_sales_desc'}}</p>
+        <ul class="portal-card-links">
+          <li><a href="#">{{t 'link_pricing'}}</a></li>
+          <li><a href="#">{{t 'link_competitive'}}</a></li>
+          <li><a href="#">{{t 'link_case_studies'}}</a></li>
+        </ul>
+      </div>
     </section>
+
+    <!-- Dynamic categories from Zendesk -->
+    {{#if categories}}
+    <section class="categories-section">
+      <h2 class="section-heading">{{t 'all_categories'}}</h2>
+      <div class="categories">
+        {{#each categories}}
+        <a href="{{url}}" class="category-card">
+          <h3 class="category-title">{{name}}</h3>
+          {{#if description}}
+            <p class="category-description">{{description}}</p>
+          {{/if}}
+        </a>
+        {{/each}}
+      </div>
+    </section>
+    {{/if}}
 
     {{#if promoted_articles}}
     <section class="promoted-articles">
-      <h2>{{t 'promoted_articles'}}</h2>
+      <h2 class="section-heading">{{t 'promoted_articles'}}</h2>
       <ul class="article-list">
         {{#each promoted_articles}}
-        <li><a href="{{url}}">{{title}}</a></li>
+        <li class="article-list-item"><a href="{{url}}">{{title}}</a></li>
         {{/each}}
       </ul>
     </section>

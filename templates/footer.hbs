@@ -1,9 +1,20 @@
 <footer class="footer">
   <div class="container">
     <div class="footer-inner">
-      <span class="footer-brand">
-        {{help_center.name}}
-      </span>
+      <div class="footer-brand">
+        <span class="footer-logo-text">Carbonio Partner Portal</span>
+        <span class="footer-copyright">&copy; Zextras s.r.l.</span>
+      </div>
+
+      <nav class="footer-links" aria-label="{{t 'footer_nav'}}">
+        <a href="https://zextras.com/" target="_blank" rel="noopener">{{t 'zextras_website'}}</a>
+        <a href="https://docs.zextras.com/" target="_blank" rel="noopener">{{t 'public_docs'}}</a>
+        <a href="https://community.zextras.com/" target="_blank" rel="noopener">{{t 'community'}}</a>
+        {{#if partner_support_email}}
+          <a href="mailto:{{partner_support_email}}">{{t 'partner_support'}}</a>
+        {{/if}}
+      </nav>
+
       {{#if help_center.language_selector}}
         <div class="footer-language">
           {{help_center.language_selector}}
