@@ -1,0 +1,41 @@
+<nav class="breadcrumbs" aria-label="{{t 'breadcrumb'}}">
+  <ol>
+    <li><a href="{{help_center.url}}">{{help_center.name}}</a></li>
+    <li><a href="{{section.category.url}}">{{section.category.name}}</a></li>
+    <li aria-current="page">{{section.name}}</li>
+  </ol>
+</nav>
+
+<div class="container">
+  <header class="page-header">
+    <h1>{{section.name}}</h1>
+    {{#if section.description}}
+      <p class="page-description">{{section.description}}</p>
+    {{/if}}
+  </header>
+
+  {{#if subsections}}
+  <section class="subsections">
+    {{#each subsections}}
+    <div class="subsection">
+      <h2><a href="{{url}}">{{name}}</a></h2>
+    </div>
+    {{/each}}
+  </section>
+  {{/if}}
+
+  <ul class="article-list">
+    {{#each articles}}
+    <li class="article-list-item">
+      <a href="{{url}}">
+        <span class="article-title">{{title}}</span>
+        {{#if promoted}}
+          <span class="article-promoted" aria-label="{{t 'promoted'}}">&#9733;</span>
+        {{/if}}
+      </a>
+    </li>
+    {{/each}}
+  </ul>
+
+  {{pagination}}
+</div>

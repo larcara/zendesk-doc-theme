@@ -1,0 +1,25 @@
+<nav class="breadcrumbs" aria-label="{{t 'breadcrumb'}}">
+  <ol>
+    <li><a href="{{help_center.url}}">{{help_center.name}}</a></li>
+    <li aria-current="page">{{t 'community'}}</li>
+  </ol>
+</nav>
+
+<div class="container">
+  <header class="page-header">
+    <h1>{{t 'community'}}</h1>
+  </header>
+
+  {{#if topics}}
+  <section class="topic-list">
+    {{#each topics}}
+    <a href="{{url}}" class="topic-card">
+      <h2 class="topic-title">{{name}}</h2>
+      {{#if description}}
+        <p class="topic-description">{{description}}</p>
+      {{/if}}
+    </a>
+    {{/each}}
+  </section>
+  {{/if}}
+</div>

@@ -1,0 +1,83 @@
+<nav class="breadcrumbs" aria-label="{{t 'breadcrumb'}}">
+  <ol>
+    <li><a href="{{help_center.url}}">{{help_center.name}}</a></li>
+    <li><a href="{{article.section.category.url}}">{{article.section.category.name}}</a></li>
+    <li><a href="{{article.section.url}}">{{article.section.name}}</a></li>
+    <li aria-current="page">{{article.title}}</li>
+  </ol>
+</nav>
+
+<div class="container article-container">
+  <article class="article">
+    <header class="article-header">
+      <h1>{{article.title}}</h1>
+      <div class="article-meta">
+        <span class="article-author">{{article.author.name}}</span>
+        <time datetime="{{article.edited_at}}" class="article-date">{{date article.edited_at}}</time>
+      </div>
+    </header>
+
+    <div class="article-body">
+      {{article.body}}
+    </div>
+
+    {{#if article.attachments}}
+    <section class="article-attachments">
+      <h2>{{t 'attachments'}}</h2>
+      <ul>
+        {{#each article.attachments}}
+        <li>
+          <a href="{{url}}" target="_blank">{{name}} ({{size}})</a>
+        </li>
+        {{/each}}
+      </ul>
+    </section>
+    {{/if}}
+
+    <footer class="article-footer">
+      <div class="article-vote" data-article-id="{{article.id}}">
+        <span class="article-vote-question">{{t 'was_this_helpful'}}</span>
+        <button class="article-vote-up" aria-label="{{t 'yes'}}">{{t 'yes'}}</button>
+        <button class="article-vote-down" aria-label="{{t 'no'}}">{{t 'no'}}</button>
+      </div>
+    </footer>
+  </article>
+
+  {{#if article.internal_notes_enabled}}
+  <section class="article-sidebar">
+    <h3>{{t 'related_articles'}}</h3>
+    {{#if related_articles}}
+    <ul>
+      {{#each related_articles}}
+      <li><a href="{{url}}">{{title}}</a></li>
+      {{/each}}
+    </ul>
+    {{/if}}
+  </section>
+  {{/if}}
+
+  {{#if article.comments_disabled}}{{else}}
+  <section class="article-comments" id="comments">
+    <h2>{{t 'comments'}}</h2>
+    {{#each article.comments}}
+    <div class="comment" id="comment-{{id}}">
+      <div class="comment-header">
+        <span class="comment-author">{{author.name}}</span>
+        <time datetime="{{created_at}}">{{date created_at}}</time>
+      </div>
+      <div class="comment-body">{{body}}</div>
+    </div>
+    {{/each}}
+
+    {{pagination}}
+
+    {{#if signed_in}}
+    <form class="comment-form" action="{{article.comments_url}}" method="post">
+      <label for="comment-body">{{t 'add_comment'}}</label>
+      <textarea id="comment-body" name="body" rows="4" required></textarea>
+      <button type="submit" class="btn btn-primary">{{t 'submit'}}</button>
+    </form>
+    {{/if}}
+  </section>
+  {{/if}}
+</div>

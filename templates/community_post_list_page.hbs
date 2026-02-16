@@ -1,0 +1,41 @@
+<nav class="breadcrumbs" aria-label="{{t 'breadcrumb'}}">
+  <ol>
+    <li><a href="{{help_center.url}}">{{help_center.name}}</a></li>
+    <li><a href="{{help_center.community_url}}">{{t 'community'}}</a></li>
+    <li aria-current="page">{{topic.name}}</li>
+  </ol>
+</nav>
+
+<div class="container">
+  <header class="page-header">
+    <h1>{{topic.name}}</h1>
+    {{#if topic.description}}
+      <p class="page-description">{{topic.description}}</p>
+    {{/if}}
+  </header>
+
+  {{#if signed_in}}
+    <a href="{{new_community_post_url}}" class="btn btn-primary">{{t 'new_post'}}</a>
+  {{/if}}
+
+  {{#if posts}}
+  <ul class="post-list">
+    {{#each posts}}
+    <li class="post-list-item">
+      <a href="{{url}}">
+        <h2 class="post-title">{{title}}</h2>
+        <div class="post-meta">
+          <span class="post-author">{{author.name}}</span>
+          <time datetime="{{created_at}}">{{date created_at}}</time>
+          <span class="post-comments-count">{{comment_count}} {{t 'comments'}}</span>
+        </div>
+      </a>
+    </li>
+    {{/each}}
+  </ul>
+
+  {{pagination}}
+  {{else}}
+    <p class="no-results">{{t 'no_posts'}}</p>
+  {{/if}}
+</div>

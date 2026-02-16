@@ -1,0 +1,48 @@
+<nav class="breadcrumbs" aria-label="{{t 'breadcrumb'}}">
+  <ol>
+    <li><a href="{{help_center.url}}">{{help_center.name}}</a></li>
+    <li aria-current="page">{{t 'my_activities'}}</li>
+  </ol>
+</nav>
+
+<div class="container">
+  <header class="page-header">
+    <h1>{{t 'my_activities'}}</h1>
+  </header>
+
+  <nav class="requests-tabs">
+    <a href="{{help_center.url}}/requests" class="{{#is current_filter 'requests'}}active{{/is}}">{{t 'my_requests'}}</a>
+    {{#if help_center.community_enabled}}
+      <a href="{{help_center.url}}/contributions/posts" class="{{#is current_filter 'contributions'}}active{{/is}}">{{t 'contributions'}}</a>
+    {{/if}}
+  </nav>
+
+  {{#if requests}}
+  <table class="requests-table">
+    <thead>
+      <tr>
+        <th>{{t 'subject'}}</th>
+        <th>{{t 'id'}}</th>
+        <th>{{t 'created_at'}}</th>
+        <th>{{t 'last_activity'}}</th>
+        <th>{{t 'status'}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each requests}}
+      <tr>
+        <td><a href="{{url}}">{{subject}}</a></td>
+        <td>{{id}}</td>
+        <td><time datetime="{{created_at}}">{{date created_at}}</time></td>
+        <td><time datetime="{{updated_at}}">{{date updated_at}}</time></td>
+        <td><span class="request-status status-{{status}}">{{status_label}}</span></td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+  {{pagination}}
+  {{else}}
+    <p class="no-results">{{t 'no_requests'}}</p>
+  {{/if}}
+</div>

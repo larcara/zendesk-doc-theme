@@ -1,0 +1,103 @@
+{
+  "name": "zendesk-doc-theme",
+  "author": "larcara",
+  "version": "1.0.0",
+  "api_version": 4,
+  "default_locale": "en-us",
+  "settings": [
+    {
+      "label": "colors_group_label",
+      "variables": [
+        {
+          "identifier": "brand_color",
+          "type": "color",
+          "description": "brand_color_description",
+          "label": "brand_color_label",
+          "value": "#17494D"
+        },
+        {
+          "identifier": "brand_text_color",
+          "type": "color",
+          "description": "brand_text_color_description",
+          "label": "brand_text_color_label",
+          "value": "#FFFFFF"
+        },
+        {
+          "identifier": "background_color",
+          "type": "color",
+          "description": "background_color_description",
+          "label": "background_color_label",
+          "value": "#F8F9F9"
+        },
+        {
+          "identifier": "text_color",
+          "type": "color",
+          "description": "text_color_description",
+          "label": "text_color_label",
+          "value": "#2F3941"
+        },
+        {
+          "identifier": "link_color",
+          "type": "color",
+          "description": "link_color_description",
+          "label": "link_color_label",
+          "value": "#1F73B7"
+        }
+      ]
+    },
+    {
+      "label": "fonts_group_label",
+      "variables": [
+        {
+          "identifier": "heading_font",
+          "type": "text",
+          "description": "heading_font_description",
+          "label": "heading_font_label",
+          "value": "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+        },
+        {
+          "identifier": "text_font",
+          "type": "text",
+          "description": "text_font_description",
+          "label": "text_font_label",
+          "value": "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+        }
+      ]
+    },
+    {
+      "label": "images_group_label",
+      "variables": [
+        {
+          "identifier": "logo",
+          "type": "file",
+          "description": "logo_description",
+          "label": "logo_label"
+        },
+        {
+          "identifier": "favicon",
+          "type": "file",
+          "description": "favicon_description",
+          "label": "favicon_label"
+        },
+        {
+          "identifier": "homepage_hero",
+          "type": "file",
+          "description": "homepage_hero_description",
+          "label": "homepage_hero_label"
+        }
+      ]
+    },
+    {
+      "label": "homepage_group_label",
+      "variables": [
+        {
+          "identifier": "show_hero",
+          "type": "checkbox",
+          "description": "show_hero_description",
+          "label": "show_hero_label",
+          "value": true
+        }
+      ]
+    }
+  ]
+}

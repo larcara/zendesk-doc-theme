@@ -1,0 +1,31 @@
+<header class="header">
+  <div class="container">
+    <div class="header-inner">
+      <div class="header-logo">
+        <a href="{{help_center.url}}" class="logo" aria-label="{{help_center.name}}">
+          {{#if logo}}
+            <img src="{{logo}}" alt="{{help_center.name}}">
+          {{else}}
+            <span class="logo-text">{{help_center.name}}</span>
+          {{/if}}
+        </a>
+      </div>
+
+      <nav class="header-nav" aria-label="{{t 'navigation'}}">
+        {{#if help_center.community_enabled}}
+          <a href="{{help_center.community_url}}">{{t 'community'}}</a>
+        {{/if}}
+        <a href="{{help_center.url}}/requests">{{t 'my_activities'}}</a>
+      </nav>
+
+      <div class="header-actions">
+        {{#if signed_in}}
+          <a href="{{current_user.url}}" class="header-user">{{current_user.name}}</a>
+          <a href="/access/logout" class="header-logout">{{t 'sign_out'}}</a>
+        {{else}}
+          <a href="/auth/v2/login/signin?return_to={{page_url}}" class="header-login btn btn-primary">{{t 'sign_in'}}</a>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</header>
