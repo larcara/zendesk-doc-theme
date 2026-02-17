@@ -1,0 +1,36 @@
+<nav class="breadcrumbs" aria-label="{{t 'breadcrumb'}}">
+  <ol>
+    <li><a href="{{help_center.url}}">{{t 'home'}}</a></li>
+    <li><a href="{{help_center.community_url}}">{{t 'community'}}</a></li>
+    <li aria-current="page">{{t 'new_post'}}</li>
+  </ol>
+</nav>
+
+<div class="container">
+  <header class="page-header">
+    <h1>{{t 'new_post'}}</h1>
+  </header>
+
+  <form class="new-post-form" action="{{create_community_post_url}}" method="post">
+    <div class="form-field">
+      <label for="post-topic">{{t 'topic'}}</label>
+      <select id="post-topic" name="post[topic_id]" required>
+        {{#each topics}}
+          <option value="{{id}}">{{name}}</option>
+        {{/each}}
+      </select>
+    </div>
+
+    <div class="form-field">
+      <label for="post-title">{{t 'subject'}}</label>
+      <input type="text" id="post-title" name="post[title]" required>
+    </div>
+
+    <div class="form-field">
+      <label for="post-body">{{t 'post_body'}}</label>
+      <textarea id="post-body" name="post[details]" rows="8" required></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">{{t 'submit'}}</button>
+  </form>
+</div>
