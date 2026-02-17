@@ -1,0 +1,30 @@
+<nav class="breadcrumbs" aria-label="{{t 'breadcrumb'}}">
+  <ol>
+    <li><a href="{{help_center.url}}">{{t 'home'}}</a></li>
+    <li aria-current="page">{{t 'subscriptions'}}</li>
+  </ol>
+</nav>
+
+<div class="container">
+  <header class="page-header">
+    <h1>{{t 'subscriptions'}}</h1>
+    <p class="page-description">{{t 'subscriptions_desc'}}</p>
+  </header>
+
+  {{#if subscriptions}}
+  <ul class="subscriptions-list">
+    {{#each subscriptions}}
+    <li class="subscription-item">
+      <a href="{{url}}">
+        <span class="subscription-title">{{title}}</span>
+        <span class="subscription-type label">{{content_type}}</span>
+      </a>
+    </li>
+    {{/each}}
+  </ul>
+
+  {{pagination}}
+  {{else}}
+    <p class="no-results">{{t 'no_subscriptions'}}</p>
+  {{/if}}
+</div>

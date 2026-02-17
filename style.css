@@ -1094,6 +1094,78 @@ ul, ol {
   color: var(--gray-500);
 }
 
+/* --- Subscriptions --- */
+.subscriptions-list {
+  list-style: none;
+}
+
+.subscription-item {
+  border-bottom: 1px solid var(--gray-300);
+}
+
+.subscription-item a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 0;
+  color: var(--text-color);
+}
+
+.subscription-item a:hover {
+  text-decoration: none;
+  color: var(--link-color);
+}
+
+.subscription-title {
+  font-size: 0.9375rem;
+}
+
+.subscription-type {
+  flex-shrink: 0;
+  margin-left: 1rem;
+}
+
+/* --- New Post Form --- */
+.new-post-form {
+  max-width: 720px;
+}
+
+.form-field {
+  margin-bottom: 1.25rem;
+}
+
+.form-field label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.375rem;
+  font-size: 0.875rem;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 0.625rem 0.75rem;
+  font-family: var(--text-font);
+  font-size: 0.9375rem;
+  color: var(--text-color);
+  background: #fff;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: var(--link-color);
+  box-shadow: 0 0 0 3px rgba(43, 115, 210, 0.15);
+}
+
+.form-field textarea {
+  resize: vertical;
+}
+
 /* --- No Results --- */
 .no-results {
   padding: 2rem 0;
