@@ -1,41 +1,44 @@
-<nav class="breadcrumbs" aria-label="{{t 'breadcrumb'}}">
-  <ol>
-    <li><a href="{{help_center.url}}">{{help_center.name}}</a></li>
-    <li><a href="{{category.url}}">{{category.name}}</a></li>
-    <li aria-current="page">{{section.name}}</li>
-  </ol>
-</nav>
-
+<div class="container-divider"></div>
 <div class="container">
-  <header class="page-header">
-    <h1>{{section.name}}</h1>
-    {{#if section.description}}
-      <p class="page-description">{{section.description}}</p>
+  <div class="sub-nav">
+    {{breadcrumbs}}
+  </div>
+
+  <section id="main-content" class="section-content">
+    <header class="page-header">
+      <h1>{{section.name}}</h1>
+      {{#if section.description}}
+        <p class="page-header-description">{{section.description}}</p>
+      {{/if}}
+    </header>
+
+    {{#if section.sections}}
+    <ul class="section-list">
+      {{#each section.sections}}
+      <li class="section-list-item">
+        <a href="{{url}}">{{name}}</a>
+      </li>
+      {{/each}}
+    </ul>
     {{/if}}
-  </header>
 
-  {{#if sections}}
-  <section class="subsections">
-    {{#each sections}}
-    <div class="subsection">
-      <h2><a href="{{url}}">{{name}}</a></h2>
-    </div>
-    {{/each}}
-  </section>
-  {{/if}}
-
-  <ul class="article-list">
-    {{#each articles}}
-    <li class="article-list-item">
-      <a href="{{url}}">
-        <span class="article-title">{{title}}</span>
+    {{#if section.articles}}
+    <ul class="article-list">
+      {{#each section.articles}}
+      <li class="article-list-item {{#if promoted}}article-promoted{{/if}}">
+        <a href="{{url}}" class="article-list-link">{{title}}</a>
         {{#if promoted}}
-          <span class="article-promoted" aria-label="{{t 'promoted'}}">&#9733;</span>
+          <span class="article-promoted-badge" aria-label="{{t 'promoted'}}">&#9733;</span>
         {{/if}}
-      </a>
-    </li>
-    {{/each}}
-  </ul>
+      </li>
+      {{/each}}
+    </ul>
+    {{else}}
+      <p class="section-empty">
+        <a href="{{section.url}}">{{t 'empty'}}</a>
+      </p>
+    {{/if}}
 
-  {{pagination}}
+    {{pagination}}
+  </section>
 </div>

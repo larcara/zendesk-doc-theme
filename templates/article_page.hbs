@@ -11,13 +11,7 @@
         <div class="article-meta">
           <span class="article-author">{{article.author.name}}</span>
           <time datetime="{{article.edited_at}}" class="article-date">{{date article.edited_at}}</time>
-          {{#if labels}}
-          <div class="article-labels">
-            {{#each labels}}
-              <span class="label">{{name}}</span>
-            {{/each}}
-          </div>
-          {{/if}}
+
         </div>
       </header>
 

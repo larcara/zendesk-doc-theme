@@ -1,52 +1,54 @@
-<nav class="breadcrumbs" aria-label="{{t 'breadcrumb'}}">
-  <ol>
-    <li><a href="{{help_center.url}}">{{help_center.name}}</a></li>
-    <li><a href="{{help_center.url}}/requests">{{t 'my_activities'}}</a></li>
-    <li aria-current="page">{{request.subject}}</li>
-  </ol>
-</nav>
-
 <div class="container">
-  <header class="page-header">
-    <h1>{{request.subject}}</h1>
-    <span class="request-status status-{{request.status}}">{{request.status_label}}</span>
-  </header>
+  <div class="request-breadcrumbs">{{breadcrumbs}}</div>
 
-  <div class="request-details">
-    <dl>
-      <dt>{{t 'requester'}}</dt>
-      <dd>{{request.requester.name}}</dd>
-      <dt>{{t 'created_at'}}</dt>
-      <dd><time datetime="{{request.created_at}}">{{date request.created_at}}</time></dd>
-      <dt>{{t 'last_activity'}}</dt>
-      <dd><time datetime="{{request.updated_at}}">{{date request.updated_at}}</time></dd>
-    </dl>
-  </div>
+  <h1 class="request-title">{{request.subject}}</h1>
 
-  <div class="request-comments">
-    {{#each request.comments}}
-    <div class="comment {{#if official}}comment-official{{/if}}">
-      <div class="comment-header">
-        <span class="comment-author">{{author.name}}</span>
-        <time datetime="{{created_at}}">{{date created_at}}</time>
+  <div id="main-content" class="request-container">
+    <section class="request-main">
+      <div class="request-details">
+        <dl>
+          <dt>{{t 'requester'}}</dt>
+          <dd>{{request.requester.name}}</dd>
+          <dt>{{t 'created_at'}}</dt>
+          <dd><time datetime="{{request.created_at}}">{{date request.created_at}}</time></dd>
+          <dt>{{t 'last_activity'}}</dt>
+          <dd><time datetime="{{request.updated_at}}">{{date request.updated_at}}</time></dd>
+          <dt>{{t 'status'}}</dt>
+          <dd><span class="request-status status-label status-label-{{request.status}}">{{request.status_name}}</span></dd>
+        </dl>
       </div>
-      <div class="comment-body">{{body}}</div>
-      {{#if attachments}}
-      <ul class="comment-attachments">
-        {{#each attachments}}
-        <li><a href="{{url}}" target="_blank">{{name}}</a></li>
+
+      <ul class="comment-list">
+        {{#each comments}}
+        <li id="{{anchor}}" class="comment">
+          <div class="comment-wrapper">
+            <div class="comment-info">
+              <div class="comment-author">
+                <span class="comment-author-name">{{author.name}}</span>
+                <span class="meta-data">{{date created_at}}</span>
+              </div>
+              <section class="comment-body">{{body}}</section>
+              {{#if attachments}}
+              <ul class="comment-attachments">
+                {{#each attachments}}
+                <li><a href="{{url}}" target="_blank">{{name}} ({{size}})</a></li>
+                {{/each}}
+              </ul>
+              {{/if}}
+            </div>
+          </div>
+        </li>
         {{/each}}
       </ul>
-      {{/if}}
-    </div>
-    {{/each}}
-  </div>
 
-  {{#unless request.closed_or_solved}}
-  <form class="comment-form" action="{{request.comments_url}}" method="post" enctype="multipart/form-data">
-    <label for="request-comment">{{t 'add_comment'}}</label>
-    <textarea id="request-comment" name="body" rows="4" required></textarea>
-    <button type="submit" class="btn btn-primary">{{t 'submit'}}</button>
-  </form>
-  {{/unless}}
+      {{pagination}}
+
+      {{#form 'comment' class='comment-form'}}
+        {{wysiwyg 'body'}}
+        <div class="comment-form-controls">
+          {{input type='submit' class='btn btn-primary'}}
+        </div>
+      {{/form}}
+    </section>
+  </div>
 </div>
