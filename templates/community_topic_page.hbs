@@ -1,22 +1,17 @@
-<nav class="breadcrumbs" aria-label="{{t 'breadcrumb'}}">
-  <ol>
-    <li><a href="{{help_center.url}}">{{t 'home'}}</a></li>
-    <li><a href="{{help_center.community_url}}">{{t 'community'}}</a></li>
-    <li aria-current="page">{{topic.name}}</li>
-  </ol>
-</nav>
-
 <div class="container">
+  <div class="sub-nav">
+    {{breadcrumbs}}
+  </div>
+
   <header class="page-header">
     <h1>{{topic.name}}</h1>
     {{#if topic.description}}
       <p class="page-description">{{topic.description}}</p>
     {{/if}}
+    <span class="post-to-community">
+      {{link 'new_post' topic_id=topic.id class='btn btn-primary'}}
+    </span>
   </header>
-
-  {{#if signed_in}}
-    <a href="{{new_community_post_url}}" class="btn btn-primary">{{t 'new_post'}}</a>
-  {{/if}}
 
   {{#if posts}}
   <ul class="post-list">

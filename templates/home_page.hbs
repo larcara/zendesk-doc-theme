@@ -1,18 +1,13 @@
 <div class="home-page">
-  {{#if show_hero}}
-  <div class="hero" {{#if homepage_hero}}style="background-image: url('{{homepage_hero}}')"{{/if}}>
+  {{#if settings.show_hero}}
+  <div class="hero" {{#if settings.homepage_hero}}style="background-image: url('{{settings.homepage_hero}}')"{{/if}}>
     <div class="container">
-      {{#if show_partner_badge}}
+      {{#if settings.show_partner_badge}}
         <span class="partner-badge">{{t 'partner_portal'}}</span>
       {{/if}}
       <h1 class="hero-title">{{t 'home_page_title'}}</h1>
       <p class="hero-subtitle">{{t 'home_page_subtitle'}}</p>
-      <form role="search" class="search" action="{{search.url}}" data-instant="true">
-        <input type="search" name="query" id="query" class="search-input" placeholder="{{t 'search_placeholder'}}" autocomplete="off" aria-label="{{t 'search'}}">
-        <button type="submit" class="search-btn" aria-label="{{t 'search'}}">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        </button>
-      </form>
+      {{search submit=false class='search'}}
     </div>
   </div>
   {{/if}}

@@ -1,14 +1,9 @@
-<nav class="breadcrumbs" aria-label="{{t 'breadcrumb'}}">
-  <ol>
-    <li><a href="{{help_center.url}}">{{help_center.name}}</a></li>
-    <li><a href="{{help_center.community_url}}">{{t 'community'}}</a></li>
-    <li><a href="{{post.topic.url}}">{{post.topic.name}}</a></li>
-    <li aria-current="page">{{post.title}}</li>
-  </ol>
-</nav>
-
 <div class="container">
-  <article class="post">
+  <div class="sub-nav">
+    {{breadcrumbs}}
+  </div>
+
+  <article class="post" id="main-content">
     <header class="post-header">
       <h1>{{post.title}}</h1>
       <div class="post-meta">
@@ -18,7 +13,7 @@
     </header>
 
     <div class="post-body">
-      {{{post.body}}}
+      {{post.details}}
     </div>
 
     <div class="post-vote">
@@ -31,13 +26,13 @@
   <section class="post-comments" id="comments">
     <h2>{{t 'comments'}} ({{post.comment_count}})</h2>
 
-    {{#each post.comments}}
+    {{#each comments}}
     <div class="comment" id="comment-{{id}}">
       <div class="comment-header">
         <span class="comment-author">{{author.name}}</span>
         <time datetime="{{created_at}}">{{date created_at}}</time>
       </div>
-      <div class="comment-body">{{{body}}}</div>
+      <div class="comment-body">{{body}}</div>
       <div class="comment-vote">
         <button class="comment-vote-up" aria-label="{{t 'vote_up'}}">&#9650;</button>
         <span class="comment-vote-count">{{vote_sum}}</span>
@@ -48,12 +43,9 @@
 
     {{pagination}}
 
-    {{#if signed_in}}
-    <form class="comment-form" action="{{post.comments_url}}" method="post">
-      <label for="comment-body">{{t 'add_comment'}}</label>
-      <textarea id="comment-body" name="body" rows="4" required></textarea>
-      <button type="submit" class="btn btn-primary">{{t 'submit'}}</button>
-    </form>
-    {{/if}}
+    {{#form 'comment' class='comment-form'}}
+      {{wysiwyg 'body'}}
+      {{input type='submit' class='btn btn-primary'}}
+    {{/form}}
   </section>
 </div>

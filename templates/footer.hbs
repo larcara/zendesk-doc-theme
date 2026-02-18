@@ -10,16 +10,10 @@
         <a href="https://zextras.com/" target="_blank" rel="noopener">{{t 'zextras_website'}}</a>
         <a href="https://docs.zextras.com/" target="_blank" rel="noopener">{{t 'public_docs'}}</a>
         <a href="https://community.zextras.com/" target="_blank" rel="noopener">{{t 'community'}}</a>
-        {{#if partner_support_email}}
-          <a href="mailto:{{partner_support_email}}">{{t 'partner_support'}}</a>
+        {{#if settings.partner_support_email}}
+          <a href="mailto:{{settings.partner_support_email}}">{{t 'partner_support'}}</a>
         {{/if}}
       </nav>
-
-      {{#if help_center.language_selector}}
-        <div class="footer-language">
-          {{help_center.language_selector}}
-        </div>
-      {{/if}}
     </div>
   </div>
 </footer>

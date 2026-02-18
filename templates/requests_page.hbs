@@ -11,9 +11,9 @@
   </header>
 
   <nav class="requests-tabs">
-    <a href="{{help_center.url}}/requests" class="{{#is current_filter 'requests'}}active{{/is}}">{{t 'my_requests'}}</a>
+    <a href="{{help_center.url}}/requests">{{t 'my_requests'}}</a>
     {{#if help_center.community_enabled}}
-      <a href="{{help_center.url}}/contributions/posts" class="{{#is current_filter 'contributions'}}active{{/is}}">{{t 'contributions'}}</a>
+      {{link 'contributions'}}
     {{/if}}
   </nav>
 
@@ -35,7 +35,7 @@
         <td>{{id}}</td>
         <td><time datetime="{{created_at}}">{{date created_at}}</time></td>
         <td><time datetime="{{updated_at}}">{{date updated_at}}</time></td>
-        <td><span class="request-status status-{{status}}">{{status_label}}</span></td>
+        <td><span class="request-status status-{{status}}">{{status}}</span></td>
       </tr>
       {{/each}}
     </tbody>

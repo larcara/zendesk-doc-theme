@@ -3,15 +3,15 @@
     <div class="header-inner">
       <div class="header-logo">
         <a href="{{help_center.url}}" class="logo" aria-label="Carbonio Partner Portal">
-          {{#if logo}}
-            <img src="{{logo}}" alt="Carbonio">
+          {{#if settings.logo}}
+            <img src="{{settings.logo}}" alt="Carbonio">
           {{else}}
             <span class="logo-text">
               <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
               Carbonio
             </span>
           {{/if}}
-          {{#if show_partner_badge}}
+          {{#if settings.show_partner_badge}}
             <span class="header-badge">{{t 'partner'}}</span>
           {{/if}}
         </a>
@@ -20,7 +20,7 @@
       <nav class="header-nav" aria-label="{{t 'navigation'}}">
         <a href="{{help_center.url}}">{{t 'home'}}</a>
         {{#if help_center.community_enabled}}
-          <a href="{{help_center.community_url}}">{{t 'community'}}</a>
+          {{#link 'community'}}{{t 'community'}}{{/link}}
         {{/if}}
         <a href="{{help_center.url}}/requests">{{t 'my_requests'}}</a>
         <a href="{{help_center.url}}/requests/new">{{t 'submit_request'}}</a>
@@ -28,11 +28,10 @@
 
       <div class="header-actions">
         {{#if signed_in}}
-          <span class="header-welcome">{{t 'welcome_user' name=current_user.name}}</span>
-          <a href="{{current_user.url}}" class="header-user-link">{{t 'my_profile'}}</a>
+          <a href="/hc/profiles/me" class="header-user-link">{{t 'my_profile'}}</a>
           <a href="/access/logout" class="header-logout">{{t 'sign_out'}}</a>
         {{else}}
-          <a href="/auth/v2/login/signin?return_to={{page_url}}" class="header-login btn btn-primary">{{t 'partner_sign_in'}}</a>
+          <a href="/auth/v2/login/signin" class="header-login btn btn-primary">{{t 'partner_sign_in'}}</a>
         {{/if}}
       </div>
     </div>

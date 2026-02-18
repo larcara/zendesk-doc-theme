@@ -13,21 +13,5 @@
     <h1>{{user.name}}</h1>
   </header>
 
-  {{#if user.details}}
-    <p class="profile-details">{{user.details}}</p>
-  {{/if}}
 
-  {{#if user_comments}}
-  <section class="profile-activity">
-    <h2>{{t 'recent_activity'}}</h2>
-    <ul class="article-list">
-      {{#each user_comments}}
-      <li class="article-list-item">
-        <a href="{{url}}">{{body}}</a>
-        <time datetime="{{created_at}}">{{date created_at}}</time>
-      </li>
-      {{/each}}
-    </ul>
-  </section>
-  {{/if}}
 </div>

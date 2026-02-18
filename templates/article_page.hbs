@@ -1,24 +1,20 @@
-<nav class="breadcrumbs" aria-label="{{t 'breadcrumb'}}">
-  <ol>
-    <li><a href="{{help_center.url}}">{{t 'home'}}</a></li>
-    <li><a href="{{article.section.category.url}}">{{article.section.category.name}}</a></li>
-    <li><a href="{{article.section.url}}">{{article.section.name}}</a></li>
-    <li aria-current="page">{{article.title}}</li>
-  </ol>
-</nav>
-
+<div class="container-divider"></div>
 <div class="container article-container">
+  <div class="sub-nav">
+    {{breadcrumbs}}
+  </div>
+
   <div class="article-layout">
-    <article class="article">
+    <article class="article" id="main-content">
       <header class="article-header">
         <h1>{{article.title}}</h1>
         <div class="article-meta">
           <span class="article-author">{{article.author.name}}</span>
           <time datetime="{{article.edited_at}}" class="article-date">{{date article.edited_at}}</time>
-          {{#if article.label_names}}
+          {{#if labels}}
           <div class="article-labels">
-            {{#each article.label_names}}
-              <span class="label">{{this}}</span>
+            {{#each labels}}
+              <span class="label">{{name}}</span>
             {{/each}}
           </div>
           {{/if}}
@@ -29,11 +25,11 @@
         {{article.body}}
       </div>
 
-      {{#if article.attachments}}
+      {{#if attachments}}
       <section class="article-attachments">
         <h2>{{t 'attachments'}}</h2>
         <ul>
-          {{#each article.attachments}}
+          {{#each attachments}}
           <li>
             <a href="{{url}}" target="_blank" rel="noopener">{{name}} ({{size}})</a>
           </li>
@@ -52,17 +48,6 @@
     </article>
 
     <aside class="article-sidebar">
-      {{#if related_articles}}
-      <div class="sidebar-section">
-        <h3>{{t 'related_articles'}}</h3>
-        <ul>
-          {{#each related_articles}}
-          <li><a href="{{url}}">{{title}}</a></li>
-          {{/each}}
-        </ul>
-      </div>
-      {{/if}}
-
       <div class="sidebar-section">
         <h3>{{t 'need_help'}}</h3>
         <p>{{t 'need_help_desc'}}</p>
@@ -74,7 +59,7 @@
   {{#if article.comments_disabled}}{{else}}
   <section class="article-comments" id="comments">
     <h2>{{t 'comments'}}</h2>
-    {{#each article.comments}}
+    {{#each comments}}
     <div class="comment" id="comment-{{id}}">
       <div class="comment-header">
         <span class="comment-author">{{author.name}}</span>
@@ -86,13 +71,10 @@
 
     {{pagination}}
 
-    {{#if signed_in}}
-    <form class="comment-form" action="{{article.comments_url}}" method="post">
-      <label for="comment-body">{{t 'add_comment'}}</label>
-      <textarea id="comment-body" name="body" rows="4" required></textarea>
-      <button type="submit" class="btn btn-primary">{{t 'submit'}}</button>
-    </form>
-    {{/if}}
+    {{#form 'comment' class='comment-form'}}
+      {{wysiwyg 'body'}}
+      {{input type='submit' class='btn btn-primary'}}
+    {{/form}}
   </section>
   {{/if}}
 </div>

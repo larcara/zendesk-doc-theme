@@ -1,7 +1,7 @@
 <nav class="breadcrumbs" aria-label="{{t 'breadcrumb'}}">
   <ol>
     <li><a href="{{help_center.url}}">{{help_center.name}}</a></li>
-    <li><a href="{{section.category.url}}">{{section.category.name}}</a></li>
+    <li><a href="{{category.url}}">{{category.name}}</a></li>
     <li aria-current="page">{{section.name}}</li>
   </ol>
 </nav>
@@ -14,9 +14,9 @@
     {{/if}}
   </header>
 
-  {{#if subsections}}
+  {{#if sections}}
   <section class="subsections">
-    {{#each subsections}}
+    {{#each sections}}
     <div class="subsection">
       <h2><a href="{{url}}">{{name}}</a></h2>
     </div>
