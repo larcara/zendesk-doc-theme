@@ -39,37 +39,6 @@
 </div>
     </div>
 </section>
-<br>
-<div class="container">
-  {{#if promoted_articles}}
-  <section class="articles home-section home-section--featured">
-    <div class="home-section__header">
-      <h2>Featured articles</h2>
-      <p>Quick access to release notes, technical updates and frequently used support content.</p>
-    </div>
-
-    <ul class="article-list promoted-articles promoted-articles--list">
-      {{#each promoted_articles}}
-        <li class="promoted-articles-item">
-          <a href="{{url}}" class="promoted-articles-link">
-            <span class="promoted-articles-title">{{title}}</span>
-
-            {{#if internal}}
-              <span class="promoted-articles-meta">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16" class="icon-lock" aria-hidden="true">
-                  <rect width="12" height="9" x="2" y="7" fill="currentColor" rx="1" ry="1"/>
-                  <path fill="none" stroke="currentColor" d="M4.5 7.5V4a3.5 3.5 0 017 0v3.5"/>
-                </svg>
-                <span>{{t 'internal'}}</span>
-              </span>
-            {{/if}}
-          </a>
-        </li>
-      {{/each}}
-    </ul>
-  </section>
-{{/if}}
-</div>
   
   <div class="container">
   <section class="section knowledge-base home-section home-section--categories">
