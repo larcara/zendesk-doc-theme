@@ -1,125 +1,126 @@
-<div class="home-page">
-  {{#if settings.show_hero}}
-  <div class="hero" {{#if settings.homepage_hero}}style="background-image: url('{{settings.homepage_hero}}')"{{/if}}>
-    <div class="container">
-      {{#if settings.show_partner_badge}}
-        <span class="partner-badge">{{t 'partner_portal'}}</span>
-      {{/if}}
-      <h1 class="hero-title">{{t 'home_page_title'}}</h1>
-      <p class="hero-subtitle">{{t 'home_page_subtitle'}}</p>
-      {{search submit=false class='search'}}
-    </div>
+<h1 class="visibility-hidden">{{ help_center.name }}</h1>
+
+<section id="main-content" class="home-hero">
+  <div class="container home-hero__inner">
+    <div class="home-hero__content">
+      <p class="home-hero__eyebrow">Carbonio Support Portal</p>
+
+      <h2 class="home-hero__title">
+        How can we help you today?
+      </h2>
+
+      <p class="home-hero__subtitle">
+        Search technical documentation, troubleshooting guides and product resources.
+      </p>
+	 <div class="home-hero__search-wrapper">
+    <svg xmlns="http://www.w3.org/2000/svg"
+         width="16"
+         height="16"
+         viewBox="0 0 16 16"
+         class="search-icon"
+         aria-hidden="true">
+      <circle cx="6.5" cy="6.5" r="5" fill="none" stroke="currentColor"/>
+      <path stroke="currentColor" stroke-linecap="round" d="M15 15L11 11"/>
+    </svg>
+
+    {{search submit=false instant=settings.instant_search class='search search-full'}}
   </div>
+</div>
+      <div class="home-hero__quick-links" aria-label="Quick actions">
+  <a href="/hc/en-gb/categories/21625721231388-Announcements-Release-Notes" class="home-hero__quick-link">
+    Announcements & Release Notes
+  </a>
+  <a href="/hc/en-gb/categories/21625675640476-Tools-Processes-and-Resources" class="home-hero__quick-link">
+    Tools, Processes & Resources
+  </a>
+  <a href="/hc/en-gb/categories/21625675640476-Tools-Processes-and-Resources" class="home-hero__quick-link">
+    Early Access
+  </a>
+</div>
+    </div>
+</section>
+<br>
+<div class="container">
+  {{#if promoted_articles}}
+  <section class="articles home-section home-section--featured">
+    <div class="home-section__header">
+      <h2>Featured articles</h2>
+      <p>Quick access to release notes, technical updates and frequently used support content.</p>
+    </div>
+
+    <ul class="article-list promoted-articles promoted-articles--list">
+      {{#each promoted_articles}}
+        <li class="promoted-articles-item">
+          <a href="{{url}}" class="promoted-articles-link">
+            <span class="promoted-articles-title">{{title}}</span>
+
+            {{#if internal}}
+              <span class="promoted-articles-meta">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16" class="icon-lock" aria-hidden="true">
+                  <rect width="12" height="9" x="2" y="7" fill="currentColor" rx="1" ry="1"/>
+                  <path fill="none" stroke="currentColor" d="M4.5 7.5V4a3.5 3.5 0 017 0v3.5"/>
+                </svg>
+                <span>{{t 'internal'}}</span>
+              </span>
+            {{/if}}
+          </a>
+        </li>
+      {{/each}}
+    </ul>
+  </section>
+{{/if}}
+</div>
+  
+  <div class="container">
+  <section class="section knowledge-base home-section home-section--categories">
+  <div class="home-section__header">
+    <h2>Browse resources</h2>
+    <p>Start from the area that best matches the type of content you need.</p>
+  </div>
+  <section class="categories blocks">
+    <ul class="blocks-list blocks-list--categories">
+      {{#each categories}}
+        {{#if ../has_multiple_categories}}
+          <li class="blocks-item">
+            <a href='{{url}}' class="blocks-item-link">
+              <span class="blocks-item-title">{{name}}</span>
+              {{#if description}}
+                <span class="blocks-item-description">{{excerpt description}}</span>
+              {{/if}}
+            </a>
+          </li>
+        {{else}}
+          {{#each sections}}
+            <li class="blocks-item">
+              <a href='{{url}}' class="blocks-item-link">
+                <span class="blocks-item-title">{{name}}</span>
+                {{#if description}}
+                  <span class="blocks-item-description">{{excerpt description}}</span>
+                {{/if}}
+              </a>
+            </li>
+          {{/each}}
+        {{/if}}
+      {{/each}}
+    </ul>
+    {{pagination}}
+  </section>
+
+
+  {{#if help_center.community_enabled}}
+    <section class="section home-section community">
+      <h2>{{t 'community'}}</h2>
+      {{#link 'community' class='community-link'}}
+        {{t 'join_conversation'}}
+      {{/link}}
+
+      <div class="community-image"></div>
+    </section>
   {{/if}}
 
-  <div class="container">
-    <!-- Portal sections grid -->
-    <section class="portal-sections">
-      <div class="portal-card portal-card--docs">
-        <div class="portal-card-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><line x1="8" y1="7" x2="16" y2="7"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-        </div>
-        <h2 class="portal-card-title">{{t 'section_documentation'}}</h2>
-        <p class="portal-card-desc">{{t 'section_documentation_desc'}}</p>
-        <ul class="portal-card-links">
-          <li><a href="#">{{t 'link_admin_guide'}}</a></li>
-          <li><a href="#">{{t 'link_user_guide'}}</a></li>
-          <li><a href="#">{{t 'link_installation'}}</a></li>
-        </ul>
-      </div>
-
-      <div class="portal-card portal-card--troubleshooting">
-        <div class="portal-card-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-        </div>
-        <h2 class="portal-card-title">{{t 'section_troubleshooting'}}</h2>
-        <p class="portal-card-desc">{{t 'section_troubleshooting_desc'}}</p>
-        <ul class="portal-card-links">
-          <li><a href="#">{{t 'link_common_issues'}}</a></li>
-          <li><a href="#">{{t 'link_diagnostics'}}</a></li>
-          <li><a href="#">{{t 'link_advanced_config'}}</a></li>
-        </ul>
-      </div>
-
-      <div class="portal-card portal-card--faq">
-        <div class="portal-card-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="13" x2="13" y2="13"/></svg>
-        </div>
-        <h2 class="portal-card-title">{{t 'section_faq'}}</h2>
-        <p class="portal-card-desc">{{t 'section_faq_desc'}}</p>
-        <ul class="portal-card-links">
-          <li><a href="#">{{t 'link_faq'}}</a></li>
-          <li><a href="#">{{t 'link_known_issues'}}</a></li>
-          <li><a href="#">{{t 'link_workarounds'}}</a></li>
-        </ul>
-      </div>
-
-      <div class="portal-card portal-card--news">
-        <div class="portal-card-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-        </div>
-        <h2 class="portal-card-title">{{t 'section_news'}}</h2>
-        <p class="portal-card-desc">{{t 'section_news_desc'}}</p>
-        <ul class="portal-card-links">
-          <li><a href="#">{{t 'link_changelogs'}}</a></li>
-          <li><a href="#">{{t 'link_release_notes'}}</a></li>
-          <li><a href="#">{{t 'link_feedback'}}</a></li>
-        </ul>
-      </div>
-
-      <div class="portal-card portal-card--marketing">
-        <div class="portal-card-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-        </div>
-        <h2 class="portal-card-title">{{t 'section_marketing'}}</h2>
-        <p class="portal-card-desc">{{t 'section_marketing_desc'}}</p>
-        <ul class="portal-card-links">
-          <li><a href="#">{{t 'link_brochures'}}</a></li>
-          <li><a href="#">{{t 'link_presentations'}}</a></li>
-          <li><a href="#">{{t 'link_brand_assets'}}</a></li>
-        </ul>
-      </div>
-
-      <div class="portal-card portal-card--sales">
-        <div class="portal-card-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-        </div>
-        <h2 class="portal-card-title">{{t 'section_sales'}}</h2>
-        <p class="portal-card-desc">{{t 'section_sales_desc'}}</p>
-        <ul class="portal-card-links">
-          <li><a href="#">{{t 'link_pricing'}}</a></li>
-          <li><a href="#">{{t 'link_competitive'}}</a></li>
-          <li><a href="#">{{t 'link_case_studies'}}</a></li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- Dynamic categories from Zendesk -->
-    {{#if categories}}
-    <section class="categories-section">
-      <h2 class="section-heading">{{t 'all_categories'}}</h2>
-      <div class="categories">
-        {{#each categories}}
-        <a href="{{url}}" class="category-card">
-          <h3 class="category-title">{{name}}</h3>
-          {{#if description}}
-            <p class="category-description">{{description}}</p>
-          {{/if}}
-        </a>
-        {{/each}}
-      </div>
-    </section>
+  <section class="section home-section activity">
+    {{#if settings.show_recent_activity}}
+      {{recent_activity}}
     {{/if}}
-
-    {{#if promoted_articles}}
-    <section class="promoted-articles">
-      <h2 class="section-heading">{{t 'promoted_articles'}}</h2>
-      <ul class="article-list">
-        {{#each promoted_articles}}
-        <li class="article-list-item"><a href="{{url}}">{{title}}</a></li>
-        {{/each}}
-      </ul>
-    </section>
-    {{/if}}
-  </div>
+  </section>
 </div>

@@ -1,27 +1,41 @@
-<nav class="breadcrumbs" aria-label="{{t 'breadcrumb'}}">
-  <ol>
-    <li><a href="{{help_center.url}}">{{help_center.name}}</a></li>
-    <li aria-current="page">{{category.name}}</li>
-  </ol>
-</nav>
-
+<section id="main-content" class="section hero">
+<div class="hero-inner">
+    <h2 class="visibility-hidden">{{ t 'search' }}</h2>
+    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="search-icon" aria-hidden="true">
+      <circle cx="4.5" cy="4.5" r="4" fill="none" stroke="currentColor"/>
+      <path stroke="currentColor" stroke-linecap="round" d="M11 11L7.5 7.5"/>
+    </svg>
+    {{search submit=false instant=settings.instant_search class='search search-full'}}
+  </div>
+</section>
 <div class="container">
-  <header class="page-header">
-    <h1>{{category.name}}</h1>
-    {{#if category.description}}
-      <p class="page-description">{{category.description}}</p>
-    {{/if}}
-  </header>
+  <nav class="sub-nav">
+    {{breadcrumbs}}
+  </nav>
 
-  <section class="section-list">
-    {{#each sections}}
-    <div class="section-card">
-      <h2><a href="{{url}}">{{name}}</a></h2>
-      {{#if description}}
-        <p>{{description}}</p>
-      {{/if}}
-      <span class="article-count">{{t 'articles_count' count=article_count}}</span>
+  <div class="category-container">
+    <div class="category-content">
+      <header class="page-header">
+        <h1>{{category.name}}</h1>
+        {{#if category.description}}
+          <p class="page-header-description">{{category.description}}</p>
+        {{/if}}
+      </header>
+
+      <div id="main-content" class="section-tree">
+        {{#each sections}}
+         <li class="blocks-item">
+              <a href='{{url}}' class="blocks-item-link">
+                <span class="blocks-item-title">{{name}}</span>
+                <span class="blocks-item-description">{{excerpt description}}</span>
+              </a>
+            </li>
+        {{else}}
+          <i class="category-empty">
+            <a href="{{category.url}}">{{t 'empty'}}</a>
+          </i>
+        {{/each}}
+      </div>
     </div>
-    {{/each}}
-  </section>
+  </div>
 </div>
